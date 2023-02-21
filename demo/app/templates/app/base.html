@@ -1,0 +1,60 @@
+{% load django_bootstrap5 grouped %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bootstrap Input Group Demo{% endblock title %}</title>
+    {% block bootstrap_head %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% endblock bootstrap_head %}
+      {{ form.media }}
+    <style>
+      #content {
+        width: 80%;
+        margin-left: auto;
+        margin-right:auto;
+        margin-top: 20px;
+      }
+
+      .submit-row {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+    <header><h2>Order Menu</h2><small> (layout: {{ layout|default:"default" }})</small></header>
+    <nav>
+        <a class="btn btn-secondary" href="{{ switch_url }}" style="float: right;">{{ switch_text }}</a>
+        <ul class="nav nav-pills">
+            {% url url_name as menu_url %}
+            <li class="nav-item"><a class="nav-link" href="{% url url_name 'default' %}">default layout</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url url_name 'horizontal' %}">horizontal layout</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url url_name 'floating' %}">floating layout</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url url_name 'inline' %}">inline layout</a></li>
+        </ul>
+    </nav>
+    <hr>
+    <form>
+        {% comment %}
+        {% bootstrap_field form.notes show_label=True %}
+        {% bootstrap_field form.notes show_label=False %}
+        {% bootstrap_field form.notes show_label="skip" %}
+        {% endcomment %}
+        {% if is_formset %}
+            {% bootstrap_grouped_formset form layout=layout %}
+        {% else %}
+            {% bootstrap_grouped_form form layout=layout show_label="skip" %}
+        {% endif %}
+        <div class="submit-row">
+          <input type="submit" class="btn btn-success" value="Ok!">
+          <input type="reset" class="btn btn-danger" value="But I don't like SPAM!">
+        </div>
+    </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-bootstrap-input-group"
+version = "0.0.1"
+description = "Use bootstrap's input groups with multiple widgets"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Actionb", email = "yummytea1@gmail.com"}
+]
+keywords = ["django", "controls"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Framework :: Django",
+  "Programming Language :: Python",
+]
+
+#[project.urls]
+#Repository = ""
