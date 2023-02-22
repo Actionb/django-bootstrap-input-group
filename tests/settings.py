@@ -9,8 +9,6 @@ INSTALLED_APPS = [
     "django_bootstrap_input_group",
 ]
 
-ROOT_URLCONF = "tests.urls"
-
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
