@@ -98,22 +98,19 @@ class TestInputGroupRenderer(BootstrapTestCase):
         field = self.form['nofloat']
         self.assertNotIn("form-floating", self.get_renderer(layout="floating").get_group_field_html(field))
 
-
-class TestGroupLabel(BootstrapTestCase):
-
-    def test_default_layout(self):
+    def test_group_label_default_layout(self):
         self.assertInHTML(
             '<label class="form-label">Name</label>',
             self.render('{% bootstrap_grouped_form form layout="default" show_label=True %}', {"form": TestForm()})
         )
 
-    def test_horizontal_layout(self):
+    def test_group_label_horizontal_layout(self):
         self.assertInHTML(
             '<label class="test-horizontal-label col-form-label">Name</label>',
             self.render('{% bootstrap_grouped_form form layout="horizontal" show_label=True %}', {"form": TestForm()})
         )
 
-    def test_floating_layout(self):
+    def test_group_label_floating_layout(self):
         """No group label should be added in floating layouts."""
         for show_label in (True, False, "skip"):
             with self.subTest(show_label=show_label):
@@ -125,13 +122,13 @@ class TestGroupLabel(BootstrapTestCase):
                     )
                 )
 
-    def test_inline_layout(self):
+    def test_group_label_inline_layout(self):
         self.assertInHTML(
             '<label class="visually-hidden">Name</label>',
             self.render('{% bootstrap_grouped_form form layout="inline" show_label=True %}', {"form": TestForm()})
         )
 
-    def test_show_label_false(self):
+    def test_group_label_show_label_false(self):
         for show_label in (False, "''"):
             for layout in ("default", "horizontal", "inline"):
                 with self.subTest(layout=layout, show_label=show_label):
@@ -143,7 +140,7 @@ class TestGroupLabel(BootstrapTestCase):
                         )
                     )
 
-    def test_show_label_skip(self):
+    def test_group_label_show_label_skip(self):
         for layout in ("default", "horizontal", "inline"):
             with self.subTest(layout=layout):
                 self.assertNotIn(
@@ -154,10 +151,7 @@ class TestGroupLabel(BootstrapTestCase):
                     )
                 )
 
-    def test_no_group_label(self):
-        form = TestForm()
-        form.field_groups = [('first_name', 'last_name')]
-        self.assertIn(
-            '>First Name</label>',
-            self.render(f'{{% bootstrap_grouped_form form show_label=True %}}', {"form": form})
-        )
+    def test_group_label_no_group_label(self):
+        for label in (None, ""):
+            with self.subTest(label=label):
+                self.assertIn('>First Name</label>', self.get_renderer(label=label).get_group_label())

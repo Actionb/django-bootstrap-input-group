@@ -104,6 +104,16 @@ class TestGroupedFormRenderer(BootstrapTestCase):
         renderer = GroupedFormRenderer(form)
         self.assertEqual(renderer.groups, [])
 
+    def test_groups_invalid(self):
+        """Group declarations must be either string or lists or tuples."""
+        form = TestForm()
+        for invalid_group in ([('first_name', 'last_name'), 2], [('first_name', 'last_name'), {}]):
+            with self.subTest(invalid_group=invalid_group):
+                form.field_groups = invalid_group
+                renderer = GroupedFormRenderer(form)
+                with self.assertRaises(TypeError):
+                    renderer.groups
+
     def test_render_fields(self):
         form = TestForm()
         renderer = GroupedFormRenderer(form)
