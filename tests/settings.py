@@ -4,22 +4,12 @@ USE_TZ = True
 
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}}
 
-INSTALLED_APPS = (
-    # Default Django apps
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "django.contrib.gis",
+INSTALLED_APPS = [
     "django_bootstrap5",
-    # Our tests
     "django_bootstrap_input_group",
-    # "tests",
-)
+]
 
-ROOT_URLCONF = "urls"
+ROOT_URLCONF = "tests.urls"
 
 MIDDLEWARE = (
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -49,16 +39,8 @@ TEMPLATES = [
 ]
 
 BOOTSTRAP5 = {
-    "javascript_in_head": True,
-    "required_css_class": "django_bootstrap5-req",
-    "error_css_class": "django_bootstrap5-err",
-    "success_css_class": "django_bootstrap5-success",
-    'form_renderers': {
-        # "default": "django_bootstrap5.renderers.FormRenderer",
-        'default': 'django_bootstrap_input_group.renderer.GroupedFormRenderer',
-    },
-    'field_renderers': {
-        "default": "django_bootstrap5.renderers.FieldRenderer",
-        'grouped': 'django_bootstrap_input_group.renderer.InputGroupRenderer'
-    }
+    'wrapper_class': 'test-wrapper-class',
+    'inline_wrapper_class': 'test-inline-class',
+    'horizontal_label_class': 'test-horizontal-label',
+    'horizontal_field_class': 'test-horizontal-field',
 }
