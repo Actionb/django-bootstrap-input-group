@@ -4,6 +4,8 @@ Django==4.1.6
 # Use a fork of django-bootstrap with fixed RadioSelectButtonGroup rendering
 git+https://github.com/Actionb/django-bootstrap5.git
 
--e .
-
 coverage
+
+tox==3.28.0  # tox >4.* and pycharm do not get along
+
+-e .
