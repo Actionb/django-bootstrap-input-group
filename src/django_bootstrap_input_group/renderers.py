@@ -1,5 +1,6 @@
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
+
 from django_bootstrap5 import core
 from django_bootstrap5.css import merge_css_classes
 from django_bootstrap5.forms import render_field, render_label

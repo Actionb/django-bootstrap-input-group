@@ -1,6 +1,6 @@
 from django import template
 
-from django_bootstrap_input_group.renderer import InputGroupRenderer, GroupedFormRenderer, GroupedFormsetRenderer
+from django_bootstrap_input_group.renderers import InputGroupRenderer, GroupedFormRenderer, GroupedFormsetRenderer
 
 register = template.Library()
 
