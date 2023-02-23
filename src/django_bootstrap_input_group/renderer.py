@@ -3,7 +3,6 @@ from django.utils.safestring import mark_safe
 from django_bootstrap5 import core
 from django_bootstrap5.css import merge_css_classes
 from django_bootstrap5.forms import render_field, render_label
-from django_bootstrap5.renderers import FieldRenderer
 from django_bootstrap5.text import text_value
 
 
@@ -53,16 +52,16 @@ class GroupedFormRenderer(BaseFormRenderer):
             if not isinstance(group, (str, list, tuple)):
                 raise TypeError(
                     f"Invalid group item {group}. "
-                    "Group items must strings and/or instances of list/tuple."
+                    "Group items must be strings or lists or tuples."
                 )
             group_label = ""
             if isinstance(group, str):
                 field_names = [group]
-            elif len(group) == 1:
-                field_names = group
-            else:
+            elif len(group) == 2 and isinstance(group[1], (list, tuple)):
                 group_label = group[0]
                 field_names = group[1]
+            else:
+                field_names = group
             group_fields = [self.form[field_name] for field_name in field_names]
             if not group_label:
                 group_label = group_fields[0].label
@@ -127,20 +126,17 @@ class InputGroupRenderer(BaseFieldRenderer):
         return merge_css_classes(*label_classes)
 
     def get_group_label(self):
-        # TODO: don't render a label if show_label == 'skip' or False
-        if self.is_floating:
-            # The fields in the group will provide their own floating label.
+        if self.is_floating or self.show_label == "skip":
+            # Do not provide a label for the group.
+            # (for floating layouts, the fields in the group will provide their own floating label)
             return mark_safe("")
-
-        if self.label:
-            label = self.label
-            if self.show_label == 'skip':
-                label = ""
+        elif self.label:
             return render_label(
-                label,
+                self.label,
                 label_class=self.get_group_label_class(horizontal=self.is_horizontal),
             )
         else:
+            # Use the label of the first field in the group as the group label:
             renderer = BaseFieldRenderer(self.fields[0], **self.get_kwargs())
             return renderer.get_label_html(horizontal=self.is_horizontal)
 
@@ -150,7 +146,7 @@ class InputGroupRenderer(BaseFieldRenderer):
         for field in self.fields:
             fields += self.get_group_field_html(field)
 
-        group_classes = "input-group"
+        group_classes = "input-group"  # TODO: get input group CSS class from settings?
         if self.is_floating:
             group_classes = "input-group form-floating"
         if self.is_horizontal:
