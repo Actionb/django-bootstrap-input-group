@@ -4,12 +4,10 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Bootstrap Input Group Demo{% endblock title %}</title>
-    {% block bootstrap_head %}
+    <title>Bootstrap Input Group Demo</title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-    {% endblock bootstrap_head %}
-      {{ form.media }}
+    {{ form.media }}
     <style>
       #content {
         width: 80%;
@@ -40,15 +38,10 @@
     </nav>
     <hr>
     <form>
-        {% comment %}
-        {% bootstrap_field form.notes show_label=True %}
-        {% bootstrap_field form.notes show_label=False %}
-        {% bootstrap_field form.notes show_label="skip" %}
-        {% endcomment %}
         {% if is_formset %}
             {% bootstrap_grouped_formset form layout=layout %}
         {% else %}
-            {% bootstrap_grouped_form form layout=layout show_label="skip" %}
+            {% bootstrap_grouped_form form layout=layout %}
         {% endif %}
         <div class="submit-row">
           <input type="submit" class="btn btn-success" value="Ok!">

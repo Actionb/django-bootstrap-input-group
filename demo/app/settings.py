@@ -20,6 +20,7 @@ SECRET_KEY = 'spam-spam-lovely-spam'
 DEBUG = True
 
 INSTALLED_APPS = [
+    'django.contrib.staticfiles',
     'django_bootstrap5',
     'django_bootstrap_input_group',
     'app',
@@ -32,12 +33,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ["templates"],
         'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-            ],
-        },
     },
 ]
 

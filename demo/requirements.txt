@@ -1,0 +1,4 @@
+Django>=3.2.*
+# django-bootstrap5==22.2
+# Use a fork of django-bootstrap with fixed RadioSelectButtonGroup rendering
+git+https://github.com/Actionb/django-bootstrap5.git
