@@ -1,7 +1,6 @@
 from django import forms
 
 from django_bootstrap_input_group.renderers import GroupedFormsetRenderer
-
 from .case import BootstrapTestCase
 
 
@@ -54,4 +53,3 @@ class TestGroupedFormsetRenderer(BootstrapTestCase):
             '</div>',
             renderer.render_forms()
         )
-

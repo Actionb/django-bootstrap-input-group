@@ -1,7 +1,6 @@
 from django import forms
 
 from django_bootstrap_input_group.renderers import GroupedFormRenderer
-
 from .case import BootstrapTestCase
 
 
@@ -52,13 +51,13 @@ class TestGroupedFormRenderer(BootstrapTestCase):
     def test_groups_mixed(self):
         """Test groups when `field_groups` is a mixture of flat lists and strings, and Nested lists and strings."""
         form = TestForm()
-        for group, group_label in (
-                # <----------------- group -----------------> label
-                ([['first_name', 'last_name'], 'tel'],          'First Name'),
+        for groups, group_label in (
+                # <----------- groups -----------> expected label
+                ([['first_name', 'last_name'], 'tel'], 'First Name'),
                 ([('Name', ['first_name', 'last_name']), 'tel'], 'Name'),
         ):
-            with self.subTest(field_groups=group):
-                form.field_groups = group
+            with self.subTest(field_groups=groups):
+                form.field_groups = groups
                 renderer = GroupedFormRenderer(form)
                 self.assertEqual(
                     [(group_label, [form['first_name'], form['last_name']]), ('Phone', [form['tel']])],

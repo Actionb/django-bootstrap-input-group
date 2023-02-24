@@ -1,7 +1,6 @@
 from django import forms
 
 from django_bootstrap_input_group.renderers import InputGroupRenderer
-
 from .case import BootstrapTestCase
 
 

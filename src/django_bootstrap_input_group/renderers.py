@@ -6,7 +6,6 @@ from django_bootstrap5.css import merge_css_classes
 from django_bootstrap5.forms import render_field, render_label
 from django_bootstrap5.text import text_value
 
-
 BaseFormRenderer = core.get_form_renderer()
 BaseFormsetRenderer = core.get_formset_renderer()
 BaseFieldRenderer = core.get_field_renderer()
@@ -17,7 +16,7 @@ class GroupedFormRenderer(BaseFormRenderer):
     Render a form that groups some of its fields into input groups.
 
     Groups are declared through the form attribute `field_groups`.
-    `field_groups` contains the names of formfields in the order that they
+    `field_groups` contains the names of form fields in the order that they
     should be rendered in, with nested lists (or tuples) of names representing
     a group.
     The nested list can be either a flat list, or a two-item list, where the
@@ -35,7 +34,7 @@ class GroupedFormRenderer(BaseFormRenderer):
             field_groups = [
                 ('Name', ['first_name', 'second_name']),
                 'tel',
-                'address,
+                'address',
             ]
 
         The fields `first_name` and `second_name` will be rendered together as
@@ -86,6 +85,7 @@ class GroupedFormRenderer(BaseFormRenderer):
 
 
 class GroupedFormsetRenderer(BaseFormsetRenderer):
+    """Render a formset of a form that groups some of its fields into input groups."""
 
     def render_forms(self):
         rendered_forms = mark_safe("")
@@ -127,6 +127,13 @@ class InputGroupRenderer(BaseFieldRenderer):
         return merge_css_classes(*label_classes)
 
     def get_group_label(self):
+        """
+        Provide a label for an input group.
+
+        If no label was provided, use the label of the field of the group.
+        Return an empty string if set to floating layout or if set to skip the
+        labels.
+        """
         if self.is_floating or self.show_label == "skip":
             # Do not provide a label for the group.
             # (for floating layouts, the fields in the group will provide their own floating label)
