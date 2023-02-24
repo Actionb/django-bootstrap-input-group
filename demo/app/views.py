@@ -1,7 +1,7 @@
 from django.urls import reverse
 from django.views.generic import FormView
 
-from .forms import MenuForm, MenuFormset
+from .forms import OrderMenu, MenuFormset
 
 
 class BaseView(FormView):
@@ -31,7 +31,7 @@ class BaseView(FormView):
 
 
 class MenuView(BaseView):
-    form_class = MenuForm
+    form_class = OrderMenu
     url_name = 'menu'
 
 
