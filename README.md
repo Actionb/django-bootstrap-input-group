@@ -1,19 +1,27 @@
 # django-bootstrap-input-groups
 
-This is an add-on for [django-bootstrap5](https://pypi.org/project/django-bootstrap5/) that enables rendering the widgets of 
-multiple django form fields as a [Bootstrap input group](https://getbootstrap.com/docs/5.2/forms/input-group/).
+This is an add-on for [django-bootstrap5](https://pypi.org/project/django-bootstrap5/) that eases rendering multiple
+django form fields as a [Bootstrap input group](https://getbootstrap.com/docs/5.2/forms/input-group/).
 
 ## Preview
 
-TODO
+![Example](demo/demo.png)
+
+See the demo for yourself:
+```
+git clone https://github.com/Actionb/django-input-groups.git
+cd django-input-groups/demo
+pip install -r requirements.txt
+python manage.py runserver
+```
+Then visit the demo page on http://127.0.0.1:8000/
 
 ## Installation
 
 TODO
 
 ## Usage
-In your templates, load the template tag set `django_bootstrap_input_group`.  
-Then you can render an input group of fields either by:
+In your templates, load the template tag set `django_bootstrap_input_group`.  Then you can render an input group of fields either by:
 * declaring the groups in a `field_groups` attribute on your form and using the `bootstrap_grouped_form` 
 template tag to render that form
 * using the `bootstrap_input_group` template tag to render a single group
@@ -80,3 +88,8 @@ Other than that, the `django_bootstrap_input_group` template tags take the same 
 `django_bootstrap5` counterparts  
 (see here for a [list of the template tags and their parameters](https://django-bootstrap5.readthedocs.io/en/latest/templatetags.html)).
 
+### CSS
+
+`django_bootstrap_input_group/css/bootstrap_input_group.css` includes some rules that make `RadioSelectButtonGroup`
+widgets fit in more neatly when rendered in an input group alongside with other widgets. Simply include the css file in your 
+[form's media](https://docs.djangoproject.com/en/4.1/topics/forms/media/#media-on-forms).
