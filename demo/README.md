@@ -2,8 +2,8 @@ A little demo of the input groups.
 
 To run:
 ```
-git clone https://github.com/Actionb/django-input-groups.git
-cd django-input-groups/demo
+git clone https://github.com/Actionb/django-bootstrap-input-group.git
+cd django-bootstrap-input-group/demo
 pip install -r requirements.txt
 python manage.py runserver
 ```
