@@ -154,6 +154,10 @@ class InputGroupRenderer(BaseFieldRenderer):
         for field in self.fields:
             fields += self.get_group_field_html(field)
 
+        # FIXME: add has-validation fix (see FieldRenderer.render)
+        # https://getbootstrap.com/docs/5.2/forms/validation/#server-side
+        # https://github.com/zostera/django-bootstrap5/issues/349
+        # https://github.com/twbs/bootstrap/issues/25110
         group_classes = "input-group"  # TODO: get input group CSS class from settings?
         if self.is_floating:
             group_classes = "input-group form-floating"
