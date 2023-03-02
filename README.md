@@ -3,9 +3,11 @@
 This is an add-on for [django-bootstrap5](https://pypi.org/project/django-bootstrap5/) for rendering multiple
 django form fields as a [Bootstrap input group](https://getbootstrap.com/docs/5.2/forms/input-group/).
 
+
 ## Requirements
 
 Django 3.2 or newer and django-bootstrap5.
+
 
 ## Installation
 
@@ -25,6 +27,7 @@ Django 3.2 or newer and django-bootstrap5.
     ]
    ```
 
+
 ## Preview
 
 Check out the little demo:
@@ -38,6 +41,7 @@ Then visit the demo forms on http://127.0.0.1:8000/.
 
 ![Preview](demo/demo.png)
 
+
 ## Usage
 
 In your templates, load the template tag set `django_bootstrap_input_group`.  Then you can render an input group of fields either by:
@@ -45,7 +49,9 @@ In your templates, load the template tag set `django_bootstrap_input_group`.  Th
 template tag to render that form
 * using the `bootstrap_input_group` template tag to render a single group
 
+
 ### Using `field_groups` form attribute:
+
 Declare `field_groups` on your form:
 ```python
 from django import forms
